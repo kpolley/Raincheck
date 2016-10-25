@@ -6,14 +6,12 @@ from ConfigParser import SafeConfigParser
 
 #TODO: Make automatic everyday
 
-#parse and initialize API keys
+#Parse config file
 parser = SafeConfigParser()
 parser.read('config.ini')
 
-account_sid = parser.get('twilioKey', 'account_sid')
-auth_token = parser.get('twilioKey', 'auth_token')
-
 def main():
+    #Get weather API key
     api_key = parser.get('forecastioKey', 'api_key')
 
     #Lat and longitude for Davis, California
@@ -35,6 +33,10 @@ def main():
         sendText()
 
 def sendText():
+
+    #Get Twilio API keys
+    account_sid = parser.get('twilioKey', 'account_sid')
+    auth_token = parser.get('twilioKey', 'auth_token')
 
     client = TwilioRestClient(account_sid, auth_token)
     myNumber = parser.get('PhoneNumbers', 'myNumber')
