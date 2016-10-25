@@ -21,10 +21,10 @@ def main():
     #Gets tomorrows date
     tomorrow = datetime.date.today() + datetime.timedelta(days=1)
     #Tomorrows date without milliseconds (for twilio)
-    tomorrowEdit = datetime.datetime(tomorrow.year, tomorrow.month, tomorrow.day, 10, 0, 0)
+    twilioTomorrow = datetime.datetime(tomorrow.year, tomorrow.month, tomorrow.day, 10, 0, 0)
 
     #loads forcast for tomorrow
-    forecast = forecastio.load_forecast(api_key, lat, lng, time = tomorrowEdit)
+    forecast = forecastio.load_forecast(api_key, lat, lng, time = twilioTomorrow)
     tomorrowForcast = forecast.hourly().icon
 
     #Sends text if it will rain
