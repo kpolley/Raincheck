@@ -31,6 +31,7 @@ def main():
 
     #Sends text if it will rain
     if (tomorrowForcast == "rain"):
+        print("It's going to rain tomorrow!")
         sendText()
 
 def sendText():
