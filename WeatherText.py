@@ -1,5 +1,6 @@
 import forecastio
 import datetime
+import fbchat
 
 from twilio.rest import TwilioRestClient
 from ConfigParser import SafeConfigParser
@@ -9,6 +10,7 @@ from ConfigParser import SafeConfigParser
 #Parse config file
 parser = SafeConfigParser()
 parser.read('config.ini')
+
 
 def main():
     #Get weather API key
@@ -30,8 +32,21 @@ def main():
     #Sends text if it will rain
     if (tomorrowForcast == "rain"):
         print("It's going to rain tomorrow!")
-        sendText()
+        fbMessege()
 
+#fb messenger is better
+def fbMessege():
+    username = parser.get('messenger', 'myUsername')
+    password = parser.get('messenger', 'myPassword')
+
+    client = fbchat.Client(username, password)
+
+    sent = client.send(514588849, "Bring your bike inside, It's going to rain tomorrow!")
+
+    if sent:
+        print("Message sent successfully!")
+
+#function for text if preferred
 def sendText():
 
     #Get Twilio API keys
@@ -42,7 +57,7 @@ def sendText():
     myNumber = parser.get('PhoneNumbers', 'myNumber')
     twilioNumber = parser.get('PhoneNumbers', 'twilioNumber')
 
-    message = client.messages.create(body="Bring your bike inside!",
+    message = client.messages.create(body="Bring your bike inside, It's going to rain tomorrow!",
         to= myNumber,
         from_= twilioNumber)
 
