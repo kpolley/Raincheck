@@ -38,10 +38,11 @@ def main():
 def fbMessege():
     username = parser.get('messenger', 'myUsername')
     password = parser.get('messenger', 'myPassword')
+    UID = parser.get('messenger', myUID)
 
     client = fbchat.Client(username, password)
 
-    sent = client.send(514588849, "Bring your bike inside, It's going to rain tomorrow!")
+    sent = client.send(UID, "Bring your bike inside, It's going to rain tomorrow!")
 
     if sent:
         print("Message sent successfully!")
