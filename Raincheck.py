@@ -2,7 +2,9 @@ import forecastio
 import datetime
 import fbchat
 
-from twilio.rest import TwilioRestClient
+###import and use twilio for texting###
+
+#from twilio.rest import TwilioRestClient
 from ConfigParser import SafeConfigParser
 
 #TODO: Make automatic everyday
