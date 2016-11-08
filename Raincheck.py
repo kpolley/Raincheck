@@ -2,9 +2,10 @@ import forecastio
 import datetime
 import fbchat
 
-###import and use twilio for texting###
+###import and use twilio function for texting instead of messenger###
 
 #from twilio.rest import TwilioRestClient
+
 from ConfigParser import SafeConfigParser
 
 #TODO: Make automatic everyday
@@ -33,18 +34,25 @@ def main():
 
     #Sends text if it will rain
     if (tomorrowForcast == "rain"):
-        print("It's going to rain tomorrow!")
-        fbMessege()
+        message = "Bring your bike inside, it's going to rain tomorrow!"
+        print(message)
+        fbMessege(message)
 
+    else:
+        message = "It's not going to rain tomorrow, just want to wish you a great day"
+        print(message)
+        fbMessege(message)
+
+        
 #fb messenger is better
-def fbMessege():
+def fbMessege(message):
     username = parser.get('messenger', 'myUsername')
     password = parser.get('messenger', 'myPassword')
-    UID = parser.get('messenger', myUID)
+    UID = parser.get('messenger', 'myUID')
 
     client = fbchat.Client(username, password)
 
-    sent = client.send(UID, "Bring your bike inside, It's going to rain tomorrow!")
+    sent = client.send(UID, message)
 
     if sent:
         print("Message sent successfully!")
