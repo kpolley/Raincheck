@@ -8,11 +8,11 @@ import fbchat
 
 from ConfigParser import SafeConfigParser
 
-#TODO: Make automatic everyday
-
 #Parse config file
 parser = SafeConfigParser()
-parser.read('config.ini')
+
+#Change with your own directory
+parser.read('/home/pi/Documents/GitHub/Raincheck/config.ini')
 
 
 def main():
