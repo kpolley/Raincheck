@@ -38,11 +38,6 @@ def main():
         print(message)
         fbMessege(message)
 
-    else:
-        message = "It's not going to rain tomorrow, just want to wish you a great day"
-        print(message)
-        fbMessege(message)
-
         
 #fb messenger is better
 def fbMessege(message):
